@@ -13,7 +13,6 @@
 import { galleryItems } from './gallery-items';
 // Change code below this line
 import SimpleLightbox from "simplelightbox";
-// import SimpleLightbox from "simplelightbox/dist/simple-lightbox.esm";
 import "simplelightbox/dist/simple-lightbox.min.css";
 
 const galleryContainer = document.querySelector('.gallery');//получим ссылку к контейнеру куда будем складывать карточки
@@ -60,6 +59,4 @@ gallery.on('show.simplelightbox', function () {
 });
 
 }
-
-
 console.log(galleryItems);
