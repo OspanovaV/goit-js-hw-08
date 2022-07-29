@@ -51,7 +51,6 @@ function onGalleryContainerClick(evt) {
 function onEscKeyPress(event) {
   const ESC_KEY_CODE = 'Escape'; 
   if (event.code === ESC_KEY_CODE) { 
-//закрыть модалку 
   instance.close(() => window.removeEventListener('keydown', onEscKeyPress));
        return;
   }
