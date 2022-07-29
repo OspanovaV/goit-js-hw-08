@@ -9,23 +9,22 @@
 // // Дополнительный импорт стилей
 // import "simplelightbox/dist/simple-lightbox.min.css";
 
-// Add imports above this line
 import { galleryItems } from './gallery-items';
-// Change code below this line
+
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
 
-const galleryContainer = document.querySelector('.gallery');//получим ссылку к контейнеру куда будем складывать карточки
-const cardsMarcup = createGalleryCardsMarkup(galleryItems);//вызываем массив(colors) обьектов (хранит результат вызова функции всей разметки)
+const galleryContainer = document.querySelector('.gallery');
+const cardsMarcup = createGalleryCardsMarkup(galleryItems);
 
 //рэндерим разметку в html 
-galleryContainer.insertAdjacentHTML('beforeend', cardsMarcup);//добавляет в html созданную разметку
+galleryContainer.insertAdjacentHTML('beforeend', cardsMarcup);
 
 //Реализация делегирования на div.gallery
-galleryContainer.addEventListener('click', onGalleryContainerClick);//вешаем слушателя на большой контейнер и выполняем функцию
+galleryContainer.addEventListener('click', onGalleryContainerClick);
 
 //создаём разметку
-function createGalleryCardsMarkup(galleryItems) {//функция принимает массив
+function createGalleryCardsMarkup(galleryItems) {
     return galleryItems.map(({ preview, original, description }) => {
         return `<div class="gallery__item">
             <a class="gallery__link" href = "${original}" >
@@ -43,20 +42,28 @@ function createGalleryCardsMarkup(galleryItems) {//функция принима
 }
 
 function onGalleryContainerClick(evt) {
-    evt.preventDefault();//запретить при клике по умолчанию перенаправление на другую страницу
-    const isGalleryImage = evt.target.classList.contains('gallery__image');//содержит элемент с классом
-    //проверка куда кликнули
+    evt.preventDefault();
+    const isGalleryImage = evt.target.classList.contains('gallery__image');
   
-    if (!isGalleryImage) {//если элемент по которому кликнули не содержит isGalleryImage
-        return;//выходим и ничего не делаем
+    if (!isGalleryImage) {
+        return;
     }
     const urlEl = evt.target.dataset.source; //получение url большого изображения
-    
-//используем библиотеку SimpleLightbox для открытия модалки
+   
+//используем библиотеку simplelightbox для открытия модалки
     let gallery = new SimpleLightbox('.gallery a');
 gallery.on('show.simplelightbox', function () {
-
-});
-
+	
+});   
+   //закроем модалку при нажатии клавиши ESC   
+function onEscKeyPress(event) {
+  const ESC_KEY_CODE = 'Escape'; 
+  if (event.code === ESC_KEY_CODE) { //если значение клавиши= ESC
+//закрыть модалку при помощи метода библиотеки
+  instance.close(() => window.removeEventListener('keydown', onEscKeyPress));
+       return;
+  }
+    return;
 }
-console.log(galleryItems);
+}
+
