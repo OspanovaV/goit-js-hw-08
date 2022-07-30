@@ -31,6 +31,10 @@
   transition: transform var(--animation-duration) var(--timing-function);
 }
 
+.gallery__card {
+  list-style: none;
+}
+
 .gallery__link {
   display: block;
   text-decoration: none;
