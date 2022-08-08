@@ -15,19 +15,20 @@ function onFormData(evt) {
 }
 
 function onSubmitForm(evt) {
-  console.log(JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY)));
   evt.preventDefault();
+  console.log(formData); 
   evt.currentTarget.reset();
   localStorage.removeItem(LOCALSTORAGE_KEY);
 }
 
-(function dataFromLocalStorage() {
-  if (LOCALSTORAGE_KEY === null) {
-    return
-  }
+(function dataFromLocalStorage() {  
   const data = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY)); 
-  if (data) {
-    formData.email = email.value;
-    formData.message = message.value;
+  if (data.email) {
+    formData.email = data.email;
+    email.value = data.email;
   } 
+  if (data.message) {
+    formData.message = data.message;
+    message.value = data.message;
+ }
 })();
