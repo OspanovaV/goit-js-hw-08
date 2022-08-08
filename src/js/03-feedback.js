@@ -9,7 +9,7 @@ form.addEventListener('submit', onSubmitForm);
 
 const formData = {};
 
-function onFormData(evt) {
+function onFormData(evt) { 
   formData[evt.target.name] = evt.target.value;
   localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(formData));
 }
@@ -22,9 +22,12 @@ function onSubmitForm(evt) {
 }
 
 (function dataFromLocalStorage() {
+  if (LOCALSTORAGE_KEY === null) {
+    return
+  }
   const data = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY)); 
   if (data) {
-    email.value = data.email;
-    message.value = data.message;
-  }
+    formData.email = email.value;
+    formData.message = message.value;
+  } 
 })();
