@@ -16,19 +16,19 @@ function onFormData(evt) {
 
 function onSubmitForm(evt) {
   evt.preventDefault();
+  formData.email = email.value;
+  formData.message = message.value;
   console.log(formData); 
   evt.currentTarget.reset();
   localStorage.removeItem(LOCALSTORAGE_KEY);
 }
 
 (function dataFromLocalStorage() {  
-  const data = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY)); 
-  if (data.email) {
+  const data = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY));   
+   if (data) {
     formData.email = data.email;
     email.value = data.email;
-  } 
-  if (data.message) {
     formData.message = data.message;
     message.value = data.message;
- }
+  } 
 })();
