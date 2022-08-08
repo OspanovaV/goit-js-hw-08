@@ -25,10 +25,14 @@ function onSubmitForm(evt) {
 
 (function dataFromLocalStorage() {  
   const data = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY));   
-   if (data) {
-    formData.email = data.email;
-    email.value = data.email;
-    formData.message = data.message;
-    message.value = data.message;
-  } 
+  if (data) {
+   if (data.email) {
+     formData.email = data.email;
+     email.value = data.email;
+   }
+   if (data.message) {
+     formData.message = data.message;
+     message.value = data.message;
+   }
+  }   
 })();
